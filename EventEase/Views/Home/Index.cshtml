@@ -2,7 +2,81 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container mt-4">
+    
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold">
+            Welcome to EventEase Venue Booking System
+        </h1>
+
+        <p class="lead">
+            Manage the venues, events as well as the bookings.
+        </p>
+    </div>
+
+    <div class="row g-4">
+
+        <!-- Venue Card -->
+        <div class="col-md-4">
+            <div class="card shadow-lg h-100">
+
+            <div class="card-body text-center">
+                <h3 class="card-title">Venues</h3>
+                <p class="card-text">
+                    Create and manage the venue information.
+                </p>
+
+                <a asp-controller="Venue" asp-action="Index" class="btn btn-primary">
+                    View the Venues
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!--Event Card -->
+    <div class="col-md-4">
+        <div class="card shadow-lg h-100">
+            <div class="card-body text-center">
+                <h3 class="card-title">Events</h3>
+                <p class="card-text">
+                    Create and manage the events.
+                </p>
+                <a asp-controller="Event" asp-action="Index" class="btn btn-success">
+                    View the Events
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Booking Card -->
+    <div class="col-md-4">
+        <div class="card shadow-lg h-100">
+            <div class="card-body text-center">
+                <h3 class="card-title">Bookings</h3>
+                <p class="card-text">
+                    Manage the bookings as well as schedules.
+                </p>
+                <a asp-controller="Booking" asp-action="Index" class="btn btn-dark">
+                    View the Bookings
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Description section -->
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <div class="card-shadow">
+                <div class="card-body">
+                    <h3>
+                        About EventEase
+                    </h3>
+                    <p>
+                        EventEase is a venue booking system that allows you schedule venues, 
+                        avoid booking conflicts and it helps you mange events much esasier. 
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
