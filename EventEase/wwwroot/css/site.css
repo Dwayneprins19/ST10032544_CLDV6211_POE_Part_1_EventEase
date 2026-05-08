@@ -18,5 +18,19 @@ html {
 }
 
 body {
+    background-color: #f4f6f9;
   margin-bottom: 60px;
+}
+
+table {
+    border-collapse: collapse;
+    background-color: white;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+img {
+    border-radius: 10px;
 }
