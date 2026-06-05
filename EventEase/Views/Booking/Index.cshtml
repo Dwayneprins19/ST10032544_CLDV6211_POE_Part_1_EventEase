@@ -3,10 +3,22 @@
 <h1>Bookings</h1>
 
 <form method="get">
-    <input type="text"
-           name="searchString"
-           placeholder="Search Booking ID or Event Name"
-           class="form-control mb-3" />
+    
+    <input name="searchString"
+           class="form-control mb-2"
+           placeholder="Search Event"/>
+
+    <input type="date"
+           name="startDate"
+           class="form-control mb-2" />
+
+    <input type="date"
+           name="endDate"
+           class="form-control mb-2" />
+
+    <button class="btn btn-primary">
+        Search
+    </button>
 </form>
 
 <p>

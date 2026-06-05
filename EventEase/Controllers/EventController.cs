@@ -1,6 +1,7 @@
 ﻿using EventEase.Data;
 using EventEase.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace EventEase.Controllers
@@ -21,6 +22,13 @@ namespace EventEase.Controllers
 
         public IActionResult Create()
         {
+
+            ViewData["EventTypeId"] =
+                new SelectList(
+                    _context.EventTypes,
+                    "EventTypeId",
+                    "Name"
+                );
             return View();
         }
 
@@ -47,7 +55,15 @@ namespace EventEase.Controllers
 
             if (eventItem == null)
                 return NotFound();
-            
+
+            ViewData["EventTypeId"] =
+                new SelectList(
+                    _context.EventTypes,
+                    "EventTypeId",
+                    "Name",
+                    eventItem.EventTypeId
+                );
+
             return View(eventItem);
         }
 

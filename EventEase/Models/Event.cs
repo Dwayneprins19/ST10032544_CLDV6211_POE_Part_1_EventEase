@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;    
+﻿using System.ComponentModel.DataAnnotations;
+using System.Security.Permissions;
 
 namespace EventEase.Models
 {
@@ -12,6 +13,8 @@ namespace EventEase.Models
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public string? ImageUrl { get; set; }
+        public int EventTypeId { get; set; }
+        public EventType? EventType { get; set; }
         public ICollection<Booking>? Bookings { get; set; }
     }
 }

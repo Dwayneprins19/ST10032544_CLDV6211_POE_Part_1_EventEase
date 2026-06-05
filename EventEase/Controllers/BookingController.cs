@@ -3,6 +3,7 @@ using EventEase.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace EventEase.Controllers
 {
@@ -15,10 +16,11 @@ namespace EventEase.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index(string searchString)
+        public async Task<IActionResult> Index(string searchString, int? eventTypeId, DateTime? startDate, DateTime? endDate)
         {
             var bookings = _context.Bookings
                 .Include(b => b.Event)
+                    .ThenInclude(e => e.EventType)
                 .Include(b => b.Venue)
                 .AsQueryable();
 
@@ -28,7 +30,29 @@ namespace EventEase.Controllers
                     b.BookingId.ToString().Contains(searchString) ||
                     b.Event!.Name.Contains(searchString));
             }
-                return View(await bookings.ToListAsync());
+
+            if (eventTypeId.HasValue)
+            {
+                bookings = bookings.Where(b => b.Event!.EventTypeId == eventTypeId.Value);
+            }
+
+            if (startDate.HasValue)
+            {
+                bookings = bookings.Where(b => b.BookingDate >= startDate.Value);
+            }
+
+            if (endDate.HasValue)
+            {
+                bookings = bookings.Where(b => b.BookingDate <= endDate.Value);
+            }
+
+            if (!string.IsNullOrEmpty(searchString)) 
+            {
+                bookings = bookings.Where(b =>
+                    b.Event.Name.Contains(searchString));  
+            }
+
+            return View(await bookings.ToListAsync());
         }
 
         public IActionResult Create()
